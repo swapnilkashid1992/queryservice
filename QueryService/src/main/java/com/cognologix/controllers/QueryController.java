@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cognologx.vo.QueryVo;
+import com.cognologix.vo.QueryVo;
 
 @RestController
 @RequestMapping("/api")
