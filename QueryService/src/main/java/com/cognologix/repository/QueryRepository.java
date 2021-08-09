@@ -6,4 +6,5 @@ import com.cognologix.model.Query;
 
 public interface QueryRepository extends CrudRepository<Query,Integer> {
 
+	public Query findByIdentifier(String identifier);
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cognologix.exception.QueryAlreadyExistsException;
+import com.cognologix.exception.QueryDoesNotExistsException;
 import com.cognologix.model.Query;
 import com.cognologix.service.IQueryService;
 import com.cognologix.vo.QueryVo;
@@ -24,26 +26,48 @@ public class QueryController {
 	
 	@GetMapping(path = "/query/{identifier}")
 	public String getQuery(@PathVariable(required = true) String identifier) {
-		return "Return null in Get";
+		String query = null;
+		try {
+			query = queryService.getQuery(identifier);
+		} catch (QueryDoesNotExistsException e) {
+			e.printStackTrace();
+		}
+		return query;
 	}
 
 	@PostMapping(path = "/query", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String addQuery(@RequestBody(required = true) QueryVo queryVo) {
 		Query query = new Query(queryVo.getIdentifier(), queryVo.getQuery());
 		
-		Query output = queryService.addQuery(query);
+		Query output=null;
+		try {
+			output = queryService.addQuery(query);
+			return output.toString();
+		} catch (QueryAlreadyExistsException e) {
+			e.printStackTrace();
+		}
 		
-		return output.toString();
+		return null;
 	}
 
 	@PutMapping(path = "/query", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String updateQuery(@RequestBody(required = true) QueryVo queryVo) {
-		return "Return Null from put";
+		Query output=null;
+		try {
+			output=queryService.updateQuery(queryVo.getIdentifier(), queryVo.getQuery());
+		} catch (QueryDoesNotExistsException e) {
+			e.printStackTrace();
+		}
+		return output.toString();
 	}
 
 	@DeleteMapping(path = "/query/{identifier}")
-	public String deleteQuery(@PathVariable(required = true) String identifier) {
-		return "Return Null from Delete";
+	public void deleteQuery(@PathVariable(required = true) String identifier) {
+		try {
+			queryService.deleteQuery(identifier);
+		} catch (QueryDoesNotExistsException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
