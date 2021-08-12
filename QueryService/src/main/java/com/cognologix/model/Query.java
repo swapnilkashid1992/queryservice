@@ -22,6 +22,10 @@ public class Query {
 	@Column
 	String query;
 	
+	public Query() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Query(int id, String identifier, String query) {
 		super();
 		this.id = id;
