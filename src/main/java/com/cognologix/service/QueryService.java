@@ -13,28 +13,27 @@ public class QueryService implements IQueryService {
 
 	@Autowired
 	private IQueryDao queryDao;
-	
+
 	@Override
-	public Query addQuery(Query query)throws QueryAlreadyExistsException {
+	public Query addQuery(Query query) throws QueryAlreadyExistsException {
 		return queryDao.addQuery(query);
 	}
 
 	@Override
-	public String getQuery(String identifier) throws QueryDoesNotExistsException {
-		
+	public Query getQuery(String identifier) throws QueryDoesNotExistsException {
+
 		return queryDao.getQueryByIdentifier(identifier);
 	}
-	
+
 	@Override
-	public Query updateQuery(String identifier,String query) throws QueryDoesNotExistsException {
-		
+	public Query updateQuery(String identifier, String query) throws QueryDoesNotExistsException {
+
 		return queryDao.putQueryByIdentifier(identifier, query);
 	}
-	
+
 	@Override
-	public String deleteQuery(String identifier) throws QueryDoesNotExistsException {
-		
-		return queryDao.getQueryByIdentifier(identifier);
+	public void deleteQuery(String identifier) throws QueryDoesNotExistsException {
+		queryDao.deleteQueryByIdentifier(identifier);
 	}
 
 }

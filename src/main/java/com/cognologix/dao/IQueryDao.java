@@ -8,7 +8,7 @@ public interface IQueryDao {
 
 	Query addQuery(Query query) throws QueryAlreadyExistsException;
 
-	String getQueryByIdentifier(String Identifier) throws QueryDoesNotExistsException;
+	Query getQueryByIdentifier(String Identifier) throws QueryDoesNotExistsException;
 
 	Query putQueryByIdentifier(String Identifier, String inputquery) throws QueryDoesNotExistsException;
 

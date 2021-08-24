@@ -2,13 +2,23 @@ package com.cognologix.vo;
 
 import java.util.Objects;
 
-import org.springframework.lang.NonNull;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
 
+//@Getter
+//@Setter
+//@EqualsAndHashCode
+//@ToString
+@NoArgsConstructor
 public class QueryVo {
 	@NonNull
-	String query;
+	private String query;
 	@NonNull
-	String identifier;
+	private String identifier;
 
 	public QueryVo(String query, String identifier) {
 		super();
@@ -49,4 +59,11 @@ public class QueryVo {
 		return Objects.equals(identifier, other.identifier) && Objects.equals(query, other.query);
 	}
 
+	@Override
+	public String toString() {
+		return "QueryVo [query=" + query + ", identifier=" + identifier + "]";
+	}
+	
+	
+	
 }
