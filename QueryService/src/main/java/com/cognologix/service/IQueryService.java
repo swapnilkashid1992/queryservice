@@ -8,9 +8,9 @@ public interface IQueryService {
 
 	Query addQuery(Query query) throws QueryAlreadyExistsException;
 
-	String getQuery(String identifier) throws QueryDoesNotExistsException;
+	Query getQuery(String identifier) throws QueryDoesNotExistsException;
 
 	Query updateQuery(String identifier, String query) throws QueryDoesNotExistsException;
 
-	String deleteQuery(String identifier) throws QueryDoesNotExistsException;
+	void deleteQuery(String identifier) throws QueryDoesNotExistsException;
 }
