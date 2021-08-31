@@ -2,6 +2,8 @@ package com.cognologix.vo;
 
 import java.util.Objects;
 
+import org.springframework.http.HttpStatus;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,13 +21,18 @@ public class QueryVo {
 	private String query;
 	@NonNull
 	private String identifier;
-
+	
+	private String error;
+	
 	public QueryVo(String query, String identifier) {
 		super();
 		this.query = query;
 		this.identifier = identifier;
 	}
 
+	public QueryVo(String error) {
+		this.error=error;
+	}
 	public String getQuery() {
 		return query;
 	}
@@ -40,6 +47,11 @@ public class QueryVo {
 
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
+	}
+
+	
+	public void setError(String error) {
+		this.error = error;
 	}
 
 	@Override

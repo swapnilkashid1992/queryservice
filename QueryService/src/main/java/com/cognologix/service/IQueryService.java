@@ -6,11 +6,11 @@ import com.cognologix.model.Query;
 
 public interface IQueryService {
 
-	Query addQuery(Query query) throws QueryAlreadyExistsException;
+	Query addQuery(final Query query) throws QueryAlreadyExistsException;
 
-	Query getQuery(String identifier) throws QueryDoesNotExistsException;
+	Query getQuery(final String identifier) throws QueryDoesNotExistsException;
 
-	Query updateQuery(String identifier, String query) throws QueryDoesNotExistsException;
+	Query updateQuery(final String identifier,final  String query) throws QueryDoesNotExistsException;
 
-	void deleteQuery(String identifier) throws QueryDoesNotExistsException;
+	void deleteQuery(final String identifier) throws QueryDoesNotExistsException;
 }
