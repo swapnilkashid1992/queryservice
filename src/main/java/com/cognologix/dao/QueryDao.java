@@ -94,6 +94,9 @@ public class QueryDao implements IQueryDao {
 				session.delete(q);
 				tx.commit();
 			}
-		}
+		}else {
+				tx.rollback();
+				throw new QueryDoesNotExistsException("Query not present for identifier" + Identifier);
+			}
 	}
 }
