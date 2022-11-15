@@ -36,9 +36,6 @@ object Build : BuildType({
     name = "QueryService"
     description = "Its query displaying service based on spring boot and Rest Apis"
 
-    artifactRules = "**/* => target/*.jar"
-    publishArtifacts = PublishMode.SUCCESSFUL
-
     vcs {
         root(DslContext.settingsRoot)
     }
