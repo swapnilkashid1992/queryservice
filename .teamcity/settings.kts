@@ -47,10 +47,7 @@ object Build : BuildType({
              runnerArgs = "-Dmaven.test.skip=true"
              jdkHome = "%env.JDK_17_0%"
         }
-       script {
-            name = "cmdLine"
-            scriptContent = """echo "Do Nothing""""
-        }
+       
     }
 
     triggers {
