@@ -33,7 +33,11 @@ project {
 }
 
 object Build : BuildType({
-    name = "Build"
+    name = "QueryService"
+    description = "Its query displaying service based on spring boot and Rest Apis"
+
+    artifactRules = "**/* => target/*.jar"
+    publishArtifacts = PublishMode.SUCCESSFUL
 
     vcs {
         root(DslContext.settingsRoot)
@@ -41,16 +45,22 @@ object Build : BuildType({
 
     steps {
         maven {
-            name = "Build"
-            goals = "clean install -Dmaven.test.skip=true"
+             name = "Build"
+             goals = "clean install"
+             runnerArgs = "-Dmaven.test.skip=true"
+             jdkHome = "%env.JDK_17_0%"
+        }
+       script {
+            name = "cmdLine"
+            scriptContent = """echo "Do Nothing""""
         }
     }
 
     triggers {
-        vcs {
+         vcs {
 
-            enforceCleanCheckout = true
-            enforceCleanCheckoutForDependencies = true
+        enforceCleanCheckout = true
+        enforceCleanCheckoutForDependencies = true
         }
         vcs {
             enabled = false
@@ -60,13 +70,21 @@ object Build : BuildType({
             """.trimIndent()
         }
     }
+     failureConditions {
+        executionTimeoutMin = 2
+        testFailure = false
+    }
+
 
     features {
         perfmon {
         }
+        freeDiskSpace {
+            requiredSpace = "1kb"
+            failBuild = true
+        }
     }
-
     requirements {
-        matches("teamcity.agent.jvm.os.family", "Linux")
-    }
+    matches("teamcity.agent.jvm.os.family", "Linux")
+}
 })
