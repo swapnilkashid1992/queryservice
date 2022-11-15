@@ -50,6 +50,7 @@ object Build : BuildType({
         vcs {
         }
         vcs {
+            enabled = false
             branchFilter = """
                 +:*
                 +:new
