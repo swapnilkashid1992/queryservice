@@ -65,4 +65,8 @@ object Build : BuildType({
         perfmon {
         }
     }
+
+    requirements {
+        matches("teamcity.agent.jvm.os.family", "Linux")
+    }
 })
