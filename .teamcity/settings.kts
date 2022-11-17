@@ -68,10 +68,6 @@ object Build : BuildType({
     features {
         perfmon {
         }
-        freeDiskSpace {
-            requiredSpace = "1kb"
-            failBuild = true
-        }
     }
     requirements {
     matches("teamcity.agent.jvm.os.family", "Linux")
