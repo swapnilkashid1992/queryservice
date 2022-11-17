@@ -51,11 +51,6 @@ object Build : BuildType({
     }
 
     triggers {
-         vcs {
-
-        enforceCleanCheckout = true
-        enforceCleanCheckoutForDependencies = true
-        }
         vcs {
             enabled = false
             branchFilter = """
